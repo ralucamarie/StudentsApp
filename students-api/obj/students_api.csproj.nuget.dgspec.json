@@ -1,0 +1,78 @@
+{
+  "format": 1,
+  "restore": {
+    "G:\\0INFO\\13.NET\\Laboratoare\\students_project\\students_api\\students_api.csproj": {}
+  },
+  "projects": {
+    "G:\\0INFO\\13.NET\\Laboratoare\\students_project\\students_api\\students_api.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "G:\\0INFO\\13.NET\\Laboratoare\\students_project\\students_api\\students_api.csproj",
+        "projectName": "students_api",
+        "projectPath": "G:\\0INFO\\13.NET\\Laboratoare\\students_project\\students_api\\students_api.csproj",
+        "packagesPath": "C:\\Users\\Bebe\\.nuget\\packages\\",
+        "outputPath": "G:\\0INFO\\13.NET\\Laboratoare\\students_project\\students_api\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Bebe\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {},
+          "https://www.nuget.org/api/v2": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
