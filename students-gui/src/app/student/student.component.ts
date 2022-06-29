@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { Student } from './student';
@@ -104,5 +104,11 @@ export class StudentComponent implements OnInit {
         console.log(error);
       },
     });
+  }
+
+  filterStudentsByNameOrAge(name: String) {
+    this.studentService
+      .filterByNameOrAge(name)
+      .subscribe((students) => (this.students = students));
   }
 }

@@ -12,12 +12,13 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
+import { StudentSearchComponent } from './student-search/student-search.component';
 
 export function tokenGetter() {
   return localStorage.getItem('jwt');
 }
 @NgModule({
-  declarations: [AppComponent, StudentComponent, LoginComponent, HomeComponent],
+  declarations: [AppComponent, StudentComponent, LoginComponent, HomeComponent, StudentSearchComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

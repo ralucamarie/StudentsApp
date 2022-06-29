@@ -122,6 +122,11 @@
   </div>
 </div>
 
+<!-- Search students by name or age -->
+<app-student-search
+  (onSearchStudents)="filterStudentsByNameOrAge($event)"
+></app-student-search>
+
 <table class="table">
   <thead>
     <tr>

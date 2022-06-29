@@ -31,4 +31,10 @@ export class StudentService {
       `https://localhost:7029/student?id=${studentId}`
     );
   }
+
+  filterByNameOrAge(name: String) {
+    return this.httpClient.get<Student[]>(
+      `https://localhost:7029/student?name=${name}`
+    );
+  }
 }
