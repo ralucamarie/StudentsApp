@@ -1,8 +1,10 @@
 using Microsoft.EntityFrameworkCore;
-using students_api.Data;
+using students_api.Models;
+using students_api.Context;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using students_api.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +14,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("AppDbConnection"));
 });
 
+builder.Services.AddTransient<ITokenService, TokenService>();
+
 builder.Services.AddCors(options => {
     options.AddPolicy("Cors", p => {
         p.AllowAnyHeader()
@@ -19,6 +23,8 @@ builder.Services.AddCors(options => {
         .AllowAnyOrigin();
     });
 });
+
+
 
 // Add services to the container.
 builder.Services.AddAuthentication(opt => {
@@ -33,8 +39,8 @@ builder.Services.AddAuthentication(opt => {
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            ValidIssuer = "https://localhost:5001",
-            ValidAudience = "https://localhost:5001",
+            ValidIssuer = "https://localhost:7029",
+            ValidAudience = "https://localhost:7029",
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
         };
     });
@@ -57,7 +63,7 @@ if (app.Environment.IsDevelopment())
 
 
 app.UseHttpsRedirection();
-
+app.UseCors("EnableCORS");
 app.UseAuthentication();
 app.UseAuthorization();
 

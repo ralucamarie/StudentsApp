@@ -125,3 +125,6 @@ G:\0INFO\13.NET\Laboratoare\students\students-api\obj\Debug\net6.0\refint\studen
 G:\0INFO\13.NET\Laboratoare\students\students-api\obj\Debug\net6.0\students-api.pdb
 G:\0INFO\13.NET\Laboratoare\students\students-api\obj\Debug\net6.0\students-api.genruntimeconfig.cache
 G:\0INFO\13.NET\Laboratoare\students\students-api\obj\Debug\net6.0\ref\students-api.dll
+G:\0INFO\13.NET\Laboratoare\students\students-api\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+G:\0INFO\13.NET\Laboratoare\students\students-api\bin\Debug\net6.0\Humanizer.dll
+G:\0INFO\13.NET\Laboratoare\students\students-api\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll

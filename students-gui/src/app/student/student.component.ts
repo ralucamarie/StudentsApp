@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { Student } from './student';
 import { StudentService } from './student.service';
@@ -43,9 +44,7 @@ export class StudentComponent implements OnInit {
       next: (data) => {
         this.students = data;
       },
-      error: (err) => {
-        console.log(err);
-      },
+      error: (err: HttpErrorResponse) => console.log(err),
     });
   }
 

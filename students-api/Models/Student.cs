@@ -1,8 +1,8 @@
-namespace students_api.Data.Entities;
+namespace students_api.Models;
  
 public class Student
 {
-    public int Id { get; set; }
+    public string Id { get; set; }
     public string? Name { get; set; }
     public int Age { get; set; }
     public string? Gender { get; set; }

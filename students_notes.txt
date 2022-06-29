@@ -12,3 +12,16 @@ http://codingsonata.com/apply-jwt-access-tokens-and-refresh-tokens-in-asp-net-co
 
 http://codingsonata.com/secure-angular-site-using-jwt-authentication-with-asp-net-core-web-api/
 
+user.UserName == "johndoe" && user.Password == "def@123"
+Comenzi:
+dotnet ef migrations add InitialMigration
+dotnet ef database update
+
+API:
+Students:
+https://localhost:7029/student
+
+
+Token:
+https://localhost:7029/api/auth/login
+

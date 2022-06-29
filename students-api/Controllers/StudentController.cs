@@ -8,7 +8,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using students_api.Data;
+using students_api.Models;
+using students_api.Context;
+
  
 namespace students_api.Controllers;
  
@@ -22,7 +24,7 @@ public class StudentController: ControllerBase
         _studentDbContext = studentDbContext;
     }
 
-[HttpGet]
+[HttpGet, Authorize(Roles = "Manager")]
 public async Task<IActionResult> Get()
 {
 	var students = await _studentDbContext.Student.ToListAsync();
@@ -30,7 +32,7 @@ public async Task<IActionResult> Get()
 }
 
 [HttpPost]
-public async Task<IActionResult> Post(students_api.Data.Entities.Student payload)
+public async Task<IActionResult> Post(students_api.Models.Student payload)
 {
 	_studentDbContext.Student.Add(payload);
 	await _studentDbContext.SaveChangesAsync();
@@ -38,7 +40,7 @@ public async Task<IActionResult> Post(students_api.Data.Entities.Student payload
 }
 
 [HttpPut]
-public async Task<IActionResult> Put(students_api.Data.Entities.Student payload)
+public async Task<IActionResult> Put(students_api.Models.Student payload)
 {
 	_studentDbContext.Student.Update(payload);
 	await _studentDbContext.SaveChangesAsync();
