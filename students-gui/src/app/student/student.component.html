@@ -1,14 +1,23 @@
-<div class="container">
-  <div class="row">
-    <div class="col col-md-4 offset-md-4">
-      <button
-        type="button"
-        (click)="openAddOrUpdateModal(0)"
-        class="btn btn-primary"
-      >
-        Add
-      </button>
+<div class="container d-flex justify-content-between">
+  <div class="container">
+    <div class="row">
+      <div class="col col-md-4 offset-md-4">
+        <button
+          type="button"
+          (click)="openAddOrUpdateModal(0)"
+          class="btn btn-primary"
+        >
+          Add Student
+        </button>
+      </div>
     </div>
+  </div>
+  <!-- Search students by name or age -->
+
+  <div class="container">
+    <app-student-search
+      (onSearchStudents)="filterStudentsByNameOrAge($event)"
+    ></app-student-search>
   </div>
 </div>
 
@@ -41,6 +50,7 @@
             <input type="hidden" id="studentId" [(ngModel)]="studentForm.id" />
             <div class="mb-3">
               <label for="name" class="form-label">Name</label>
+
               <input
                 type="text"
                 class="form-control"
@@ -108,13 +118,21 @@
         ></button>
       </div>
       <div class="modal-body">
-        <h1>Delete Confirmation</h1>
+        <h5>Are you sure you want to delete the student?</h5>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+        <button
+          type="button"
+          class="btn btn-secondary p-2"
+          data-bs-dismiss="modal"
+        >
           Close
         </button>
-        <button type="button" (click)="confirmDelete()" class="btn btn-primary">
+        <button
+          type="button"
+          (click)="confirmDelete()"
+          class="btn btn-primary p-2"
+        >
           Delete
         </button>
       </div>
@@ -122,15 +140,10 @@
   </div>
 </div>
 
-<!-- Search students by name or age -->
-<app-student-search
-  (onSearchStudents)="filterStudentsByNameOrAge($event)"
-></app-student-search>
-
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Id</th>
+      <!-- <th scope="col">Id</th> -->
       <th scope="col">Name</th>
       <th scope="col">Age</th>
       <th scope="col">Gender</th>
@@ -138,15 +151,26 @@
   </thead>
   <tbody>
     <tr *ngFor="let sd of students">
-      <th scope="row">{{ sd.id }}</th>
-      <td>{{ sd.name }}</td>
+      <!-- <th scope="row">{{ sd.id }}</th> -->
+      <td>
+        <a routerLink="/student-details/{{ sd.id }}" class="student-name">
+          {{ sd.name }}
+        </a>
+      </td>
+
       <td>{{ sd.age }}</td>
       <td>{{ sd.gender }}</td>
       <td>
-        <button class="btn btn-primary" (click)="openAddOrUpdateModal(sd.id)">
+        <button
+          class="btn btn-primary p-2 mx-2"
+          (click)="openAddOrUpdateModal(sd.id)"
+        >
           Edit
         </button>
-        <button class="btn btn-primary" (click)="openDeleteModal(sd.id)">
+        <button
+          class="btn btn-primary p-2 mx-2"
+          (click)="openDeleteModal(sd.id)"
+        >
           Delete
         </button>
       </td>

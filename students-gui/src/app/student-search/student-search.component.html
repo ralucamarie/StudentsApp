@@ -1,9 +1,11 @@
-<form class="filter-form" (ngSubmit)="onSubmit()">
+<form class="input-group mb-3" (ngSubmit)="onSubmit()">
   <input
     type="text"
     name="searchText"
+    class="form-control"
+    placeholder="Student's name"
     [(ngModel)]="searchText"
     id="searchText"
   />
-  <button type="submit">Search</button>
+  <button class="btn btn-outline-secondary" type="submit">Search</button>
 </form>

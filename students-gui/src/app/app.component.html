@@ -168,12 +168,12 @@
   a,
   a:visited,
   a:hover {
-    color: #1976d2;
+    color: #fffdfd;
     text-decoration: none;
   }
 
   a:hover {
-    color: #125699;
+    color: #cacaca;
   }
 
   .terminal {
@@ -305,19 +305,34 @@
 </style>
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Student App</a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li
           *ngIf="isUserAuthenticated()"
-          class="navbar-nav me-auto mb-2 mb-lg-0"
+          class="navbar-nav me-auto mb-2 mb-lg-0 p-2"
         >
           <a routerLink="/students">Students</a>
         </li>
-        <li *ngIf="!isUserAuthenticated()"><a routerLink="/login">Login</a></li>
-        <li *ngIf="isUserAuthenticated()">
+        <li
+          *ngIf="isUserAuthenticated()"
+          class="navbar-nav me-auto mb-2 mb-lg-0 p-2"
+        >
+          <a routerLink="/classes">Classes</a>
+        </li>
+
+        <li
+          *ngIf="!isUserAuthenticated()"
+          class="navbar-nav me-auto mb-2 mb-lg-0 p-2"
+        >
+          <a routerLink="/login">Login</a>
+        </li>
+        <li
+          *ngIf="isUserAuthenticated()"
+          class="navbar-nav me-auto mb-2 mb-lg-0 p-2"
+        >
           <a class="logout" (click)="logOut()">Log out</a>
         </li>
       </ul>
@@ -332,6 +347,8 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<router-outlet></router-outlet>
+<div class="container pt-5">
+  <router-outlet></router-outlet>
+</div>
 <!-- <app-student></app-student> -->
 <!-- <router-outlet></router-outlet> -->

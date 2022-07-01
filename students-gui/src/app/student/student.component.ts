@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
-import { Student } from './student';
+import { Student } from '../_interfaces/student.interface';
 import { StudentService } from './student.service';
 
 declare var window: any;
@@ -23,7 +23,7 @@ export class StudentComponent implements OnInit {
   students: Student[] = [];
   //delete modal
   deleteModal: any;
-  studentIdToDelete: number = 0;
+  studentIdToDelete: Number = 0;
 
   constructor(private studentService: StudentService) {}
 
@@ -48,7 +48,7 @@ export class StudentComponent implements OnInit {
     });
   }
 
-  openAddOrUpdateModal(studentId: number) {
+  openAddOrUpdateModal(studentId: Number) {
     if (studentId === 0) {
       this.addorupdatemodalTitle = 'Add';
       this.studentForm = {
@@ -87,7 +87,7 @@ export class StudentComponent implements OnInit {
     }
   }
 
-  openDeleteModal(studentId: number) {
+  openDeleteModal(studentId: Number) {
     this.studentIdToDelete = studentId;
     this.deleteModal.show();
   }
@@ -106,7 +106,7 @@ export class StudentComponent implements OnInit {
     });
   }
 
-  filterStudentsByNameOrAge(name: String) {
+  filterStudentsByNameOrAge(name: string) {
     this.studentService
       .filterByNameOrAge(name)
       .subscribe((students) => (this.students = students));

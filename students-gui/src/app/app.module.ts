@@ -13,12 +13,16 @@ import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { StudentSearchComponent } from './student-search/student-search.component';
+import { StudentDetailsComponent } from './components/student-details/student-details.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ClassesComponent } from './components/classes/classes.component';
+import { TeachersComponent } from './teachers/teachers.component';
 
 export function tokenGetter() {
   return localStorage.getItem('jwt');
 }
 @NgModule({
-  declarations: [AppComponent, StudentComponent, LoginComponent, HomeComponent, StudentSearchComponent],
+  declarations: [AppComponent, StudentComponent, LoginComponent, HomeComponent, StudentSearchComponent, StudentDetailsComponent, DashboardComponent, ClassesComponent, TeachersComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

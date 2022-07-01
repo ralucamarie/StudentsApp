@@ -1,0 +1,8 @@
+a.student-name {
+  text-decoration: none;
+  color: black;
+}
+
+a.student-name:hover {
+  color: navy;
+}

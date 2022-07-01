@@ -1,3 +1,4 @@
+#nullable disable
 namespace students_api.Controllers;
 
 using students_api.Context;
