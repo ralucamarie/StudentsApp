@@ -1,0 +1,26 @@
+<table class="table">
+  <thead>
+    <tr>
+      <!-- <th scope="col">Id</th> -->
+      <th scope="col">Class Name</th>
+      <th scope="col">Credits</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let sc of teacherClassesList">
+      <!-- <th scope="row">{{ sd.id }}</th> -->
+      <td>
+        <a routerLink="/classes/{{ sc.id }}" class="class-name">
+          {{ sc.name }}
+        </a>
+      </td>
+      <td></td>
+      <td>
+        <button class="btn btn-primary p-2 mx-2" (click)="deleteClass(sc.id)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

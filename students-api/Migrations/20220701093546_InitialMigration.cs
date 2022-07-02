@@ -68,6 +68,30 @@ namespace students_api.Migrations
                     table.PrimaryKey("PK_Teachers", x => x.Id);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ClassesStudent",
+                columns: table => new
+                {
+                    ClassesId = table.Column<int>(type: "int", nullable: false),
+                    StudentsId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ClassesStudent", x => new { x.ClassesId, x.StudentsId });
+                    table.ForeignKey(
+                        name: "FK_ClassesStudent_Classes_ClassesId",
+                        column: x => x.ClassesId,
+                        principalTable: "Classes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ClassesStudent_Student_StudentsId",
+                        column: x => x.StudentsId,
+                        principalTable: "Student",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Classes",
                 columns: new[] { "Id", "Credits", "Name" },
@@ -75,7 +99,9 @@ namespace students_api.Migrations
                 {
                     { 10000, 3, "Introducere in zbor" },
                     { 10001, 5, "Arta pescuitului de fluturi" },
-                    { 10002, 5, "Curs avansat de teoria miscarii" }
+                    { 10002, 5, "Curs avansat de teoria miscarii" },
+                    { 10003, 5, "Introducere in bucatarie" },
+                    { 10004, 5, "Cunoasterea mediului sanatos" }
                 });
 
             migrationBuilder.InsertData(
@@ -101,21 +127,29 @@ namespace students_api.Migrations
                     { 10001, "Mihai Costea", "Assistent" },
                     { 10002, "Lavinia Cretu", "Proffessor" }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClassesStudent_StudentsId",
+                table: "ClassesStudent",
+                column: "StudentsId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Classes");
+                name: "ClassesStudent");
 
             migrationBuilder.DropTable(
                 name: "LoginModels");
 
             migrationBuilder.DropTable(
-                name: "Student");
+                name: "Teachers");
 
             migrationBuilder.DropTable(
-                name: "Teachers");
+                name: "Classes");
+
+            migrationBuilder.DropTable(
+                name: "Student");
         }
     }
 }

@@ -6,13 +6,31 @@ import { LoginComponent } from './login/login.component';
 import { StudentComponent } from './student/student.component';
 import { ClassesComponent } from './components/classes/classes.component';
 import { StudentDetailsComponent } from './components/student-details/student-details.component';
+import { ClassesDetailsComponent } from './components/classes-details/classes-details.component';
+import { TeacherDetailsComponent } from './components/teacher-details/teacher-details.component';
+import { TeachersComponent } from './components/teachers/teachers.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'students', component: StudentComponent, canActivate: [AuthGuard] },
   { path: 'classes', component: ClassesComponent, canActivate: [AuthGuard] },
-  { path: 'student-details/:id', component: StudentDetailsComponent },
+  { path: 'teachers', component: TeachersComponent, canActivate: [AuthGuard] },
+  {
+    path: 'student-details/:id',
+    component: StudentDetailsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'classes-details/:id',
+    component: ClassesDetailsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'teacher-details/:id',
+    component: TeacherDetailsComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

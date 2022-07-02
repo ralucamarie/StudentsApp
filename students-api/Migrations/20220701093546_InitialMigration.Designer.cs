@@ -12,7 +12,7 @@ using students_api.Context;
 namespace students_api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220630141930_InitialMigration")]
+    [Migration("20220701093546_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,21 @@ namespace students_api.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("ClassesStudent", b =>
+                {
+                    b.Property<int>("ClassesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ClassesId", "StudentsId");
+
+                    b.HasIndex("StudentsId");
+
+                    b.ToTable("ClassesStudent");
+                });
 
             modelBuilder.Entity("students_api.Models.Classes", b =>
                 {
@@ -60,6 +75,18 @@ namespace students_api.Migrations
                             Id = 10002,
                             Credits = 5,
                             Name = "Curs avansat de teoria miscarii"
+                        },
+                        new
+                        {
+                            Id = 10003,
+                            Credits = 5,
+                            Name = "Introducere in bucatarie"
+                        },
+                        new
+                        {
+                            Id = 10004,
+                            Credits = 5,
+                            Name = "Cunoasterea mediului sanatos"
                         });
                 });
 
@@ -172,6 +199,21 @@ namespace students_api.Migrations
                             Name = "Lavinia Cretu",
                             Title = "Proffessor"
                         });
+                });
+
+            modelBuilder.Entity("ClassesStudent", b =>
+                {
+                    b.HasOne("students_api.Models.Classes", null)
+                        .WithMany()
+                        .HasForeignKey("ClassesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("students_api.Models.Student", null)
+                        .WithMany()
+                        .HasForeignKey("StudentsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

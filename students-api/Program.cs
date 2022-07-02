@@ -46,6 +46,9 @@ builder.Services.AddAuthentication(opt => {
     });
 
 builder.Services.AddControllers();
+builder.Services.AddControllers()
+       .AddNewtonsoftJson(o => o.SerializerSettings.ReferenceLoopHandling =
+        Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

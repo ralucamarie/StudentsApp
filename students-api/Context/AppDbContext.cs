@@ -64,6 +64,18 @@ public class AppDbContext : DbContext
                 Id = 10002,
                 Name = "Curs avansat de teoria miscarii",
                 Credits = 5,
+            },
+            new Classes
+            {
+                Id = 10003,
+                Name = "Introducere in bucatarie",
+                Credits = 5,
+            },
+            new Classes
+            {
+                Id = 10004,
+                Name = "Cunoasterea mediului sanatos",
+                Credits = 5,
             }
         );
 
@@ -89,9 +101,28 @@ public class AppDbContext : DbContext
                 Title = "Proffessor",
             }
         );
+    
 
+    // modelBuilder.Entity<Student>()
+    //             .HasMany<Classes>(s => s.Classes)
+    //             .WithMany(c => c.Students)
+    //             .Map((cs) =>
+    //                     {
+    //                         cs.MapLeftKey("StudentRefId");
+    //                         cs.MapRightKey("CourseRefId");
+    //                         cs.ToTable("StudentClasses");
+    //                     });
 
+    // modelBuilder.Entity<StudentClasses>().HasKey(ES => new { ES.StudentId, ES.ClassesId });
+    //         modelBuilder.Entity<Classes>().HasData(
+    //         new Classes {Id=10005, Name = "Cum sa mananaci sanatos si bine" },
+    //         new Classes {Id=10006,  Name = "Filosofia copacilor batrani" },
+    //         new Classes { Id = 10007, Name = "Bucuria lacustelor" },
+    //         new Classes { Id = 10008, Name = "Cum sa sapi fara sa stii" },
+    //         new Classes { Id = 10009, Name = "Cum sa adulmeci ca si un caine" }
+    //         );
+  
 
-        
+    
     }
 }

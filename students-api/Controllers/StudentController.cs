@@ -30,7 +30,8 @@ public class StudentController: ControllerBase
 [HttpGet, Authorize]
 public async Task<IActionResult> Get(string? name, int? age, int? id)
 {
-	var query = _studentDbContext.Student.AsQueryable();
+	var query = _studentDbContext.Student.Include(e => e.Classes).AsQueryable();
+
 	if ( !String.IsNullOrEmpty(name) && !age.HasValue){
 		query=query.Where(student=>student.Name.Contains(name));
 	}

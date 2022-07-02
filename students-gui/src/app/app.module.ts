@@ -13,16 +13,37 @@ import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { StudentSearchComponent } from './student-search/student-search.component';
-import { StudentDetailsComponent } from './components/student-details/student-details.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ClassesComponent } from './components/classes/classes.component';
-import { TeachersComponent } from './teachers/teachers.component';
+
+import { StudentClassesComponent } from './components/student-classes/student-classes.component';
+import { ClassesDetailsComponent } from './components/classes-details/classes-details.component';
+import { ClassStudentsComponent } from './components/class-students/class-students.component';
+import { StudentDetailsComponent } from './components/student-details/student-details.component';
+import { TeacherDetailsComponent } from './components/teacher-details/teacher-details.component';
+import { TeachersComponent } from './components/teachers/teachers.component';
+import { TeacherClassesComponent } from './components/teacher-classes/teacher-classes.component';
 
 export function tokenGetter() {
   return localStorage.getItem('jwt');
 }
 @NgModule({
-  declarations: [AppComponent, StudentComponent, LoginComponent, HomeComponent, StudentSearchComponent, StudentDetailsComponent, DashboardComponent, ClassesComponent, TeachersComponent],
+  declarations: [
+    AppComponent,
+    StudentComponent,
+    LoginComponent,
+    HomeComponent,
+    StudentSearchComponent,
+    StudentDetailsComponent,
+    DashboardComponent,
+    ClassesComponent,
+    TeachersComponent,
+    StudentClassesComponent,
+    ClassesDetailsComponent,
+    ClassStudentsComponent,
+    TeacherDetailsComponent,
+    TeacherClassesComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -41,3 +62,5 @@ export function tokenGetter() {
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+//RouterModule.forRoot(ROUTES),

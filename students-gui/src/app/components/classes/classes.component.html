@@ -1,1 +1,169 @@
-<p>classes works!</p>
+<div class="container d-flex justify-content-between">
+  <button
+    type="button"
+    (click)="openAddOrUpdateModal(0)"
+    class="btn btn-primary my-5"
+  >
+    Add Class
+  </button>
+  <!-- Search students by name or age -->
+
+  <!-- <div class="container">
+    <app-student-search
+      (onSearchClasses)="filterClassesByName($event)"
+    ></app-student-search>
+  </div> -->
+</div>
+
+<!-- existing code hidden for display -->
+
+<!-- Add or Edit Modal -->
+<div
+  class="modal fade"
+  id="addorupdatemodal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          {{ addorupdatemodalTitle }}
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <input type="hidden" id="studentId" [(ngModel)]="classForm.id" />
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                [(ngModel)]="classForm.name"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="age" class="form-label">Credits</label>
+              <input
+                type="number"
+                class="form-control"
+                id="age"
+                [(ngModel)]="classForm.credits"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="teacher" class="form-label">Teacher</label>
+              <select class="form-select" aria-label="Default select example">
+                <option selected>Open this select menu</option>
+                <option value="1">Hardcoded Teacher 1</option>
+                <option value="2">Hardcoded Teacher 2</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button
+          type="button"
+          (click)="createorUpdateClass()"
+          class="btn btn-primary"
+        >
+          Save changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Modal -->
+<div
+  class="modal fade"
+  id="deleteModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <h5>Are you sure you want to delete the class?</h5>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary p-2"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          (click)="confirmDelete()"
+          class="btn btn-primary p-2"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <!-- <th scope="col">Id</th> -->
+      <th scope="col">Name</th>
+      <th scope="col">Credits</th>
+      <th scope="col">Teacher</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cl of classes">
+      <!-- <th scope="row">{{ sd.id }}</th> -->
+      <td>
+        <a routerLink="/classes-details/{{ cl.id }}" class="">
+          {{ cl.name }}
+        </a>
+      </td>
+
+      <td>{{ cl.credits }}</td>
+      <td></td>
+      <td>
+        <button
+          class="btn btn-primary p-2 mx-2"
+          (click)="openAddOrUpdateModal(cl.id)"
+        >
+          Edit
+        </button>
+        <button
+          class="btn btn-primary p-2 mx-2"
+          (click)="openDeleteModal(cl.id)"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
