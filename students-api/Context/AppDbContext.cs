@@ -51,6 +51,7 @@ public class AppDbContext : DbContext
                 Id = 10000,
                 Name = "Introducere in zbor",
                 Credits = 3,
+                TeacherId=10000
                 
             },
             new Classes
@@ -58,24 +59,28 @@ public class AppDbContext : DbContext
                 Id = 10001,
                 Name = "Arta pescuitului de fluturi",
                 Credits = 5,
+                TeacherId=10000
             },
             new Classes
             {
                 Id = 10002,
                 Name = "Curs avansat de teoria miscarii",
                 Credits = 5,
+                TeacherId=10001
             },
             new Classes
             {
                 Id = 10003,
                 Name = "Introducere in bucatarie",
                 Credits = 5,
+                TeacherId=10002
             },
             new Classes
             {
                 Id = 10004,
                 Name = "Cunoasterea mediului sanatos",
                 Credits = 5,
+                TeacherId=10002
             }
         );
 
@@ -98,7 +103,7 @@ public class AppDbContext : DbContext
             {
                 Id = 10002,
                 Name = "Lavinia Cretu",
-                Title = "Proffessor",
+                Title = "Professor",
             }
         );
     
@@ -112,7 +117,15 @@ public class AppDbContext : DbContext
     //                         cs.MapRightKey("CourseRefId");
     //                         cs.ToTable("StudentClasses");
     //                     });
+    //  modelBuilder.Entity<Classes>()
+    //         .HasOne<Teachers>(c => c.Teacher)
+    //         .WithMany(t => t.Classes)
+    //         .HasForeignKey<int>(c => c.TeacherId); 
+    // modelBuilder.Entity<Teachers>()
+    // .HasMany<Classes>(t => t.Classes)
+    // .WithOne(c => c.Teacher);
 
+        
     // modelBuilder.Entity<StudentClasses>().HasKey(ES => new { ES.StudentId, ES.ClassesId });
     //         modelBuilder.Entity<Classes>().HasData(
     //         new Classes {Id=10005, Name = "Cum sa mananaci sanatos si bine" },

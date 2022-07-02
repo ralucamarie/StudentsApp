@@ -8,11 +8,14 @@ public class Classes
     {
         this.Students = new HashSet<Student>();
     }
+    
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Key]
     public int Id { get; set; }
     public string? Name { get; set; }
     public int? Credits { get; set; }
-     public virtual ICollection<Student> Students { get; set; }
+    public virtual ICollection<Student> Students { get; set; }
+    public Nullable<int> TeacherId { get; set; }
+    public virtual Teachers? Teacher { get; set; }
 
 }

@@ -14,7 +14,14 @@
         <p class="card-text">
           Credits: {{ this.selectedClass && selectedClass.credits }}
         </p>
-        <p class="card-text">Teacher:</p>
+        <p class="card-text">
+          Teacher:
+          {{
+            this.selectedClass &&
+              this.selectedClass.teacher &&
+              selectedClass.teacher.name
+          }}
+        </p>
       </div>
     </div>
     <div class="card d-row mx-3" style="width: 25vw">

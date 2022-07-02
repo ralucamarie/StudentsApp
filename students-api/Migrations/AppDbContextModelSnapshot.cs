@@ -51,7 +51,12 @@ namespace students_api.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("TeacherId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("TeacherId");
 
                     b.ToTable("Classes");
 
@@ -60,31 +65,36 @@ namespace students_api.Migrations
                         {
                             Id = 10000,
                             Credits = 3,
-                            Name = "Introducere in zbor"
+                            Name = "Introducere in zbor",
+                            TeacherId = 10000
                         },
                         new
                         {
                             Id = 10001,
                             Credits = 5,
-                            Name = "Arta pescuitului de fluturi"
+                            Name = "Arta pescuitului de fluturi",
+                            TeacherId = 10000
                         },
                         new
                         {
                             Id = 10002,
                             Credits = 5,
-                            Name = "Curs avansat de teoria miscarii"
+                            Name = "Curs avansat de teoria miscarii",
+                            TeacherId = 10001
                         },
                         new
                         {
                             Id = 10003,
                             Credits = 5,
-                            Name = "Introducere in bucatarie"
+                            Name = "Introducere in bucatarie",
+                            TeacherId = 10002
                         },
                         new
                         {
                             Id = 10004,
                             Credits = 5,
-                            Name = "Cunoasterea mediului sanatos"
+                            Name = "Cunoasterea mediului sanatos",
+                            TeacherId = 10002
                         });
                 });
 
@@ -195,7 +205,7 @@ namespace students_api.Migrations
                         {
                             Id = 10002,
                             Name = "Lavinia Cretu",
-                            Title = "Proffessor"
+                            Title = "Professor"
                         });
                 });
 
@@ -212,6 +222,20 @@ namespace students_api.Migrations
                         .HasForeignKey("StudentsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("students_api.Models.Classes", b =>
+                {
+                    b.HasOne("students_api.Models.Teachers", "Teacher")
+                        .WithMany("Classes")
+                        .HasForeignKey("TeacherId");
+
+                    b.Navigation("Teacher");
+                });
+
+            modelBuilder.Entity("students_api.Models.Teachers", b =>
+                {
+                    b.Navigation("Classes");
                 });
 #pragma warning restore 612, 618
         }

@@ -15,7 +15,7 @@
           {{ sc.name }}
         </a>
       </td>
-      <td></td>
+      <td>{{ sc && sc.teacher && sc.teacher.name }}</td>
       <td>
         <button class="btn btn-primary p-2 mx-2" (click)="deleteClass(sc.id)">
           Delete

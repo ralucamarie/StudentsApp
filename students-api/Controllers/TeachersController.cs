@@ -26,11 +26,11 @@ public class TeachersController: ControllerBase
 
 	
 [HttpGet, Authorize]
-public async Task<IActionResult> Get(string? name)
+public async Task<IActionResult> Get(int? id)
 {
-	var query = _studentDbContext.Teachers.AsQueryable();
-	if ( !String.IsNullOrEmpty(name)){
-		query=query.Where(classItem=>classItem.Name.Contains(name));
+	var query = _studentDbContext.Teachers.Include(c => c.Classes).AsQueryable();
+	if ( id.HasValue){
+		query=query.Where(teacherItem=>teacherItem.Id==id);
 	}
 	
 	var teachers =await query.ToListAsync();   

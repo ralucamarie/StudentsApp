@@ -10,20 +10,6 @@ namespace students_api.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Classes",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Credits = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Classes", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "LoginModels",
                 columns: table => new
                 {
@@ -69,6 +55,26 @@ namespace students_api.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Classes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Credits = table.Column<int>(type: "int", nullable: true),
+                    TeacherId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Classes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Classes_Teachers_TeacherId",
+                        column: x => x.TeacherId,
+                        principalTable: "Teachers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ClassesStudent",
                 columns: table => new
                 {
@@ -93,18 +99,6 @@ namespace students_api.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Classes",
-                columns: new[] { "Id", "Credits", "Name" },
-                values: new object[,]
-                {
-                    { 10000, 3, "Introducere in zbor" },
-                    { 10001, 5, "Arta pescuitului de fluturi" },
-                    { 10002, 5, "Curs avansat de teoria miscarii" },
-                    { 10003, 5, "Introducere in bucatarie" },
-                    { 10004, 5, "Cunoasterea mediului sanatos" }
-                });
-
-            migrationBuilder.InsertData(
                 table: "LoginModels",
                 columns: new[] { "Id", "Password", "RefreshToken", "RefreshTokenExpiryTime", "UserName" },
                 values: new object[] { 1L, "def@123", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "johndoe" });
@@ -125,8 +119,25 @@ namespace students_api.Migrations
                 {
                     { 10000, "Doctorul Who", "Doctor" },
                     { 10001, "Mihai Costea", "Assistent" },
-                    { 10002, "Lavinia Cretu", "Proffessor" }
+                    { 10002, "Lavinia Cretu", "Professor" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Classes",
+                columns: new[] { "Id", "Credits", "Name", "TeacherId" },
+                values: new object[,]
+                {
+                    { 10000, 3, "Introducere in zbor", 10000 },
+                    { 10001, 5, "Arta pescuitului de fluturi", 10000 },
+                    { 10002, 5, "Curs avansat de teoria miscarii", 10001 },
+                    { 10003, 5, "Introducere in bucatarie", 10002 },
+                    { 10004, 5, "Cunoasterea mediului sanatos", 10002 }
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Classes_TeacherId",
+                table: "Classes",
+                column: "TeacherId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ClassesStudent_StudentsId",
@@ -143,13 +154,13 @@ namespace students_api.Migrations
                 name: "LoginModels");
 
             migrationBuilder.DropTable(
-                name: "Teachers");
-
-            migrationBuilder.DropTable(
                 name: "Classes");
 
             migrationBuilder.DropTable(
                 name: "Student");
+
+            migrationBuilder.DropTable(
+                name: "Teachers");
         }
     }
 }

@@ -39,7 +39,7 @@ public async Task<IActionResult> Get(string? name, int? id)
 		query=query.Where(classItem=>classItem.Name.Contains(name) && classItem.Id==id);
 	}
 	
-	var classList =await query.ToListAsync();   
+	var classList =await query.Include(e=>e.Teacher).ToListAsync();   
 
 	return Ok(classList);
 }
